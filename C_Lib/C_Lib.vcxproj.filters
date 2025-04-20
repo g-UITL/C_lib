@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\HASH">
+      <UniqueIdentifier>{deba649a-e1b5-4218-a569-6a017023bec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\HASH">
+      <UniqueIdentifier>{fda7b38f-0b34-460c-a9b7-3b5f2ca0209e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -21,6 +27,12 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="includes\HASH\KISA_SHA256.h">
+      <Filter>헤더 파일\HASH</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\HASH\sha3.h">
+      <Filter>헤더 파일\HASH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -28,6 +40,12 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\HASH\KISA_SHA256.c">
+      <Filter>소스 파일\HASH</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\HASH\sha3.c">
+      <Filter>소스 파일\HASH</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
