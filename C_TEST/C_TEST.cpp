@@ -7,6 +7,7 @@
 #include "sha3.h"
 #include "TYPE.h"
 #include "util.h"
+#include "log.h"
 
 int sha3_test(const char *pInput)
 {
@@ -141,6 +142,7 @@ void prompt()
 	std::cout << "[2]: Sha-3 테스트\n";
 	std::cout << "[3]: ReadFile 테스트\n";
 	std::cout << "[4]: WriteFile 테스트\n";
+	std::cout << "[5]: Log 테스트\n";
 	std::cout << "[q]: 프로그램 종료\n";
 	std::cout << "테스트 번호를 입력하시오: ";
 }
@@ -197,8 +199,9 @@ int readFileTest(const char* pPath)
 int writeFileTest(const char* pPath)
 {
 	std::string strInput;
+	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //줄바꿈만 버퍼 정리
 	std::cout << "입력할 내용을 입력하시오(default=testInput 123 안녕하세요): ";
-	std::cin.ignore();
+	//std::cin.ignore();
 	std::getline(std::cin, strInput);
 
 	if (strInput.empty())
@@ -248,8 +251,48 @@ void ReadWriteTest(int index)
 
 }
 
+void LogTest()
+{
+	std::string strInput;
+	std::cout << "로그 저장경로를 입력하시오(default=C:\\Temp\\LOG_TEST\\logtest.log): ";
+	std::cin.ignore();
+	std::getline(std::cin, strInput);
+
+	if (!strInput.empty()) //저장 경로 입력시
+	{
+		if (GW_LogInit(strInput.c_str()) != EXIT_SUCCESS)
+		{
+			std::cout << "GW_LogInit 초기화 실패 :" << strInput << std::endl;
+			return;
+		}
+	}
+
+	std::cout << "if (GW_LogTrace(\"[%s][%d]로그테스트1\", __FUNCTION__, __LINE__) != EXIT_SUCCESS)" << "\n";
+	if (GW_LogTrace("[%s][%d]로그테스트1", __FUNCTION__, __LINE__) != EXIT_SUCCESS)
+	{
+		std::cout << "GW_LogTrace 실패[" << __LINE__ << "]" << std::endl;
+		return;
+	}
+
+	std::cout << "if (GW_LogTrace(\"[%s][%d]로그테스트2\", __FILE__, __LINE__) != EXIT_SUCCESS)" << "\n";
+	if (GW_LogTrace("[%s][%d]로그테스트2", __FILE__, __LINE__) != EXIT_SUCCESS)
+	{
+		std::cout << "GW_LogTrace 실패[" << __LINE__ << "]" << std::endl;
+		return;
+	}
+
+	std::cout << "if (GW_LogTrace(\"[%s][%d]로그테스트3 [%s][%d]\", __FUNCTION__, __LINE__, \"apple\", 555555) != EXIT_SUCCESS)" << "\n";
+	if (GW_LogTrace("[%s][%d]로그테스트3 [%s][%d]", __FUNCTION__, __LINE__, "apple", 555555) != EXIT_SUCCESS)
+	{
+		std::cout << "GW_LogTrace 실패[" << __LINE__ << "]" << std::endl;
+		return;
+	}
+}
+
 int main()
 {
+	GW_LogInit("C:\\Temp\\LOG_TEST\\logtest.log");
+
 	while (1)
 	{
 		prompt();
@@ -272,6 +315,9 @@ int main()
 			std::cout << "파일 입출력 테스트\n";
 			ReadWriteTest(nInput);
 			break;
+		case 5:
+			std::cout << "로그 테스트\n";
+			LogTest();
 		default:
 			std::cout << "잘못된 입력입니다." << std::endl;
 			break;
@@ -279,6 +325,8 @@ int main()
 
 		std::cout << "\n\n";
 	}
+
+	GW_LogClose();
 
     return 0;
 }

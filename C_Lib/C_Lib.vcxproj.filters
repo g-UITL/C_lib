@@ -19,6 +19,12 @@
     <Filter Include="헤더 파일\HASH">
       <UniqueIdentifier>{fda7b38f-0b34-460c-a9b7-3b5f2ca0209e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\LOG">
+      <UniqueIdentifier>{0268d3b6-799c-4cdd-89a4-9caac5a6a4ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\LOG">
+      <UniqueIdentifier>{3b95ffd3-a898-48fd-9beb-bfa64e3c887d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -39,6 +45,9 @@
     <ClInclude Include="..\includes\HASH\sha3.h">
       <Filter>헤더 파일\HASH</Filter>
     </ClInclude>
+    <ClInclude Include="..\includes\LOG\log.h">
+      <Filter>헤더 파일\LOG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -55,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="util.c">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\LOG\log.c">
+      <Filter>소스 파일\LOG</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
