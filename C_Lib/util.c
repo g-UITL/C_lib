@@ -45,7 +45,8 @@ int writeFile(const UString* pIn, const char* filePath) {
     FILE* pFile = NULL;
     errno_t err = 0;
 
-    err = fopen_s(&pFile, filePath, "wb"); // 바이너리 쓰기 모드로 파일 열기
+    //err = fopen_s(&pFile, filePath, "wb"); // 바이너리 쓰기 모드로 파일 열기
+    err = fopen_s(&pFile, filePath, "ab"); // append + binary 모드
     if (err != 0) {
         perror("Failed to open output file");
         fclose(pFile);
