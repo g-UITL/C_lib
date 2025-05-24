@@ -48,6 +48,9 @@
     <ClInclude Include="..\includes\LOG\log.h">
       <Filter>헤더 파일\LOG</Filter>
     </ClInclude>
+    <ClInclude Include="..\includes\LOG\log_win.h">
+      <Filter>헤더 파일\LOG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -66,6 +69,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SRC\LOG\log.c">
+      <Filter>소스 파일\LOG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\LOG\log_win.c">
       <Filter>소스 파일\LOG</Filter>
     </ClCompile>
   </ItemGroup>

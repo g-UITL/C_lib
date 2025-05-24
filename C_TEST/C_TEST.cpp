@@ -8,6 +8,7 @@
 #include "TYPE.h"
 #include "util.h"
 #include "log.h"
+#include "log_win.h"
 
 int sha3_test(const char *pInput)
 {
@@ -143,6 +144,7 @@ void prompt()
 	std::cout << "[3]: ReadFile 테스트\n";
 	std::cout << "[4]: WriteFile 테스트\n";
 	std::cout << "[5]: Log 테스트\n";
+	std::cout << "[6]: Log 테스트_win\n";
 	std::cout << "[q]: 프로그램 종료\n";
 	std::cout << "테스트 번호를 입력하시오: ";
 }
@@ -289,10 +291,18 @@ void LogTest()
 	}
 }
 
+void LogTest_win()
+{
+	
+	GW_LogTrace_win("[%s][%d]로그테스트1", __FUNCTION__, __LINE__);
+	GW_LogTrace_win("[%s][%d]로그테스트2", __FUNCTION__, __LINE__);
+	GW_LogTrace_win("[%s][%d]로그테스트3", __FUNCTION__, __LINE__);
+}
+
 int main()
 {
 	GW_LogInit("C:\\Temp\\LOG_TEST\\logtest.log");
-
+	GW_LogInit_win("C:\\Temp\\GW_LOG.log");
 	while (1)
 	{
 		prompt();
@@ -318,6 +328,9 @@ int main()
 		case 5:
 			std::cout << "로그 테스트\n";
 			LogTest();
+		case 6:
+			std::cout << "로그 테스트_win\n";
+			LogTest_win();
 		default:
 			std::cout << "잘못된 입력입니다." << std::endl;
 			break;
@@ -327,6 +340,7 @@ int main()
 	}
 
 	GW_LogClose();
+	GW_LogClose_win();
 
     return 0;
 }
